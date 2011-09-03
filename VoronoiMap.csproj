@@ -45,6 +45,7 @@
     <Compile Include="HashSet.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="README" />
     <Compile Include="ToolBox.cs" />
   </ItemGroup>
   <ItemGroup>

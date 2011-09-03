@@ -471,7 +471,7 @@ namespace SteeleSky.Voronoi
 
 			return new Vector2((float)(tx+alpha*ux),(float)ty+alpha*uy);
 		}	
-		public static VoronoiGraph ComputeVoronoiGraph(IEnumerable Datapoints)
+		public static VoronoiGraph GenerateGraph(IEnumerable Datapoints)
 		{
 			BinaryPriorityQueue PQ = new BinaryPriorityQueue();
 			Hashtable CurrentCircles = new Hashtable();

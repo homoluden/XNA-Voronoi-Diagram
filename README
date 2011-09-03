@@ -1,0 +1,7 @@
+﻿This implementation of Fortune's algorithm was orignally written by BenDi on Codeplex.  
+
+I changed much of it, making it useful for an XNA Implementation, using floats and Vector2.  
+
+
+
+To generate a Voronoi Diagram, simply create a list of Vector2 points, and call Fortune.GenerateGraph(list)
