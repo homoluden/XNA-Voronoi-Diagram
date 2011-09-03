@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using SteeleSky.Voronoi.Data;
@@ -9,8 +10,8 @@ namespace SteeleSky.Voronoi
 {
     public class VoronoiGraph
     {
-        public HashSet Vertices = new HashSet();
-        public HashSet Edges = new HashSet();
+        public HashSet<Vector2> Vertices = new HashSet<Vector2>();
+        public HashSet<VoronoiEdge> Edges = new HashSet<VoronoiEdge>();
     }
     public class VoronoiEdge
     {
