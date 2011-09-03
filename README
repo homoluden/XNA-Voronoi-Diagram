@@ -1,6 +1,6 @@
 ﻿This implementation of Fortune's algorithm was orignally written by BenDi on Codeplex.  
 
-I changed much of it, making it useful for an XNA Implementation, using floats and Vector2.  
+I changed much of it, making it useful for an XNA, using floats and Vector2.  
 
 
 
