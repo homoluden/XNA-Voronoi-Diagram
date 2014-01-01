@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
+using UnityEngine;
 using SteeleSky.Voronoi.Data;
 using SteeleSky.Voronoi.Mathematics;
 
@@ -176,7 +176,7 @@ namespace SteeleSky.Voronoi
                 return Root;
             }
             //1. Find the node to be replaced
-            VNode C = VNode.FindDataNode(Root, ys, e.DataPoint.X);
+            VNode C = VNode.FindDataNode(Root, ys, e.DataPoint.x);
             //2. Create the subtree (ONE Edge, but two VEdgeNodes)
             VoronoiEdge VE = new VoronoiEdge();
             VE.Left = ((VDataNode)C).DataPoint;
@@ -186,9 +186,9 @@ namespace SteeleSky.Voronoi
             VG.Edges.Add(VE);
 
             VNode SubRoot;
-            if (Math.Abs(VE.Left.Y - VE.Right.Y) < 1e-10)
+            if (Math.Abs(VE.Left.y - VE.Right.y) < 1e-10)
             {
-                if (VE.Left.X < VE.Right.X)
+                if (VE.Left.x < VE.Right.x)
                 {
                     SubRoot = new VEdgeNode(VE, false);
                     SubRoot.Left = new VDataNode(VE.Left);
@@ -233,7 +233,7 @@ namespace SteeleSky.Voronoi
             eu = (VEdgeNode)b.Parent;
             CircleCheckList = new VDataNode[] { a, c };
             //1. Create the new Vertex
-            Vector2 VNew = new Vector2(e.Center.X, e.Center.Y);
+            Vector2 VNew = new Vector2(e.Center.x, e.Center.y);
             //			VNew[0] = Fortune.ParabolicCut(a.DataPoint[0],a.DataPoint[1],c.DataPoint[0],c.DataPoint[1],ys);
             //			VNew[1] = (ys + a.DataPoint[1])/2 - 1/(2*(ys-a.DataPoint[1]))*(VNew[0]-a.DataPoint[0])*(VNew[0]-a.DataPoint[0]);
             VG.Vertices.Add(VNew);
@@ -315,8 +315,8 @@ namespace SteeleSky.Voronoi
         public float Cut(float ys, float x)
         {
             if (!Flipped)
-                return (float)Math.Round(x - Fortune.ParabolicCut(Edge.Left.X, Edge.Left.Y, Edge.Right.X, Edge.Right.Y, ys), 10);
-            return (float)Math.Round(x - Fortune.ParabolicCut(Edge.Right.X, Edge.Right.Y, Edge.Left.X, Edge.Left.Y, ys), 10);
+                return (float)Math.Round(x - Fortune.ParabolicCut(Edge.Left.x, Edge.Left.y, Edge.Right.x, Edge.Right.y, ys), 10);
+            return (float)Math.Round(x - Fortune.ParabolicCut(Edge.Right.x, Edge.Right.y, Edge.Left.x, Edge.Left.y, ys), 10);
         }
     }
 
@@ -351,7 +351,7 @@ namespace SteeleSky.Voronoi
         {
             get
             {
-                return DataPoint.Y;
+                return DataPoint.y;
             }
         }
 
@@ -359,7 +359,7 @@ namespace SteeleSky.Voronoi
         {
             get
             {
-                return DataPoint.X;
+                return DataPoint.x;
             }
         }
 
@@ -374,7 +374,7 @@ namespace SteeleSky.Voronoi
             get
             {
 
-                return (float)Math.Round(Center.Y + Vector2.Distance(NodeN.DataPoint, Center), 10);
+                return (float)Math.Round(Center.y + Vector2.Distance(NodeN.DataPoint, Center), 10);
             }
         }
 
@@ -382,7 +382,7 @@ namespace SteeleSky.Voronoi
         {
             get
             {
-                return Center.X;
+                return Center.x;
             }
         }
 
@@ -438,33 +438,33 @@ namespace SteeleSky.Voronoi
         {
             if (A == B || B == C || A == C)
                 throw new Exception("Need three different points!");
-            float tx = (A.X + C.X) / 2;
-            float ty = (A.Y + C.Y) / 2;
+            float tx = (A.x + C.x) / 2;
+            float ty = (A.y + C.y) / 2;
 
-            float vx = (B.X + C.X) / 2;
-            float vy = (B.Y + C.Y) / 2;
+            float vx = (B.x + C.x) / 2;
+            float vy = (B.y + C.y) / 2;
 
             float ux, uy, wx, wy;
 
-            if (A.X == C.X)
+            if (A.x == C.x)
             {
                 ux = 1;
                 uy = 0;
             }
             else
             {
-                ux = (C.Y - A.Y) / (A.X - C.X);
+                ux = (C.y - A.y) / (A.x - C.x);
                 uy = 1;
             }
 
-            if (B.X == C.X)
+            if (B.x == C.x)
             {
                 wx = -1;
                 wy = 0;
             }
             else
             {
-                wx = (B.Y - C.Y) / (B.X - C.X);
+                wx = (B.y - C.y) / (B.x - C.x);
                 wy = -1;
             }
 
@@ -534,7 +534,7 @@ namespace SteeleSky.Voronoi
                     foreach (VCircleEvent VCE in CurrentCircles.Values)
                     {
 
-                        if (Vector2.Distance(DP, VCE.Center) < VCE.Y - VCE.Center.Y && Math.Abs(Vector2.Distance(DP, VCE.Center) - (VCE.Y - VCE.Center.Y)) > 1e-10)
+                        if (Vector2.Distance(DP, VCE.Center) < VCE.Y - VCE.Center.y && Math.Abs(Vector2.Distance(DP, VCE.Center) - (VCE.Y - VCE.Center.y)) > 1e-10)
                             VCE.Valid = false;
                     }
                 }

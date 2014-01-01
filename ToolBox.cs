@@ -3,16 +3,12 @@ using System.Collections;
 using System.IO;
 using System.Text;
 
-using Microsoft.Xna.Framework;
+using UnityEngine;
 
 namespace SteeleSky.Voronoi.Mathematics
 {
     public abstract class MathTools
     {
-        /// <summary>
-        /// One static Random instance for use in the entire application
-        /// </summary>
-        public static readonly Random Rng = new Random((int)DateTime.Now.Ticks);
         public static float Dist(float x1, float y1, float x2, float y2)
         {
             return Vector2.Distance(new Vector2(x1, y1), new Vector2(x2, y2)); ;
@@ -24,8 +20,8 @@ namespace SteeleSky.Voronoi.Mathematics
         public static int ccw(Vector2 P0, Vector2 P1, Vector2 P2, bool PlusOneOnZeroDegrees)
         {
             int dx1, dx2, dy1, dy2;
-            dx1 = (int)(Math.Floor(P1.X - P0.X)); dy1 = (int)(Math.Floor(P1.Y - P0.Y));
-            dx2 = (int)(Math.Floor(P2.X - P0.X)); dy2 = (int)(Math.Floor(P2.Y - P0.Y));
+            dx1 = (int)(Math.Floor(P1.x - P0.x)); dy1 = (int)(Math.Floor(P1.y - P0.y));
+            dx2 = (int)(Math.Floor(P2.x - P0.x)); dy2 = (int)(Math.Floor(P2.y - P0.y));
             if (dx1 * dy2 > dy1 * dx2) return +1;
             if (dx1 * dy2 < dy1 * dx2) return -1;
             if ((dx1 * dx2 < 0) || (dy1 * dy2 < 0)) return -1;
@@ -44,8 +40,8 @@ namespace SteeleSky.Voronoi.Mathematics
         public static Vector2 IntersectionPoint(Vector2 P11, Vector2 P12, Vector2 P21, Vector2 P22)
         {
 
-            float Kx = P11.X, Ky = P11.Y, Mx = P21.X, My = P21.Y;
-            float Lx = (P12.X - P11.X), Ly = (P12.Y - P11.Y), Nx = (P22.X - P21.X), Ny = (P22.Y - P21.Y);
+            float Kx = P11.x, Ky = P11.y, Mx = P21.x, My = P21.y;
+            float Lx = (P12.x - P11.x), Ly = (P12.y - P11.y), Nx = (P22.x - P21.x), Ny = (P22.y - P21.y);
             float a = float.NaN, b = float.NaN;
             if (Lx == 0)
             {
